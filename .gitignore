@@ -1,1 +1,3 @@
 public/app.js
+.deno_plugins/
+.env

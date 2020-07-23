@@ -1,17 +1,250 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main: #e040fb;
+  --dark: #aa00c7;
+  --light: #ff79ff;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 .app {
   width: 100vw;
   height: 100vh;
-  background-color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--light);
+  font-family: 'Mulish', sans-serif;
+  overflow: hidden;
 }
 
-.app h1 {
-  color: #61dbfb;
+/* navbar */
+
+.navbar {
+  width: 100%;
+  height: 3.5rem;
+  background-color: var(--dark);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar h1,
+.navbar li {
+  color: #fff;
+}
+
+.navbar .brand {
+  padding-left: 30px;
+}
+
+.navbar ul {
+  padding-right: 30px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.navbar li {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar li.active {
+  background-color: var(--main);
+}
+
+@media (max-width: 400px) {
+  .navbar h1 {
+    font-size: calc(4vw);
+  }
+}
+
+/* main styling */
+
+.app .container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(70%, 300px) auto;
+  height: calc(100vh - 3.5rem);
+}
+
+.app main {
+  background-color: white;
+  margin-top: 80px;
+  border-radius: 24px 24px 0 0;
+  padding: 24px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.app main h1 {
+  text-align: center;
+  color: var(--main);
+}
+
+.app footer {
+  text-align: center;
+  color: #555;
+}
+
+/* remove scrollbar */
+.app main::-webkit-scrollbar {
+  display: none;
+}
+
+.app main {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* about styling */
+.app main.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.about p {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 400px;
+  line-height: 150%;
+}
+
+/* home, flower components styling */
+
+.home {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.home > a {
+  background-color: var(--light);
+  cursor: pointer;
+  padding: 8px;
+}
+
+.flowers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 12px;
+  margin: 12px 0;
+}
+
+.flower {
+  border: 1px solid var(--dark);
+  text-align: center;
+  padding: 0 12px 12px;
+  border-radius: 12px;
+}
+
+.flower h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.flower a {
+  text-decoration: underline;
+  color: var(--dark);
+}
+
+.flower img {
+  max-width: 100px;
+  height: auto;
+}
+
+/* flower-route component styling */
+
+.flower-route {
+  display: grid;
+  grid-template-columns: auto 150px;
+}
+
+.flower-route img {
+  max-width: 150px;
+  height: auto;
+}
+
+.flower-route .info {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding-left: 10%;
+}
+
+.flower-route .desc {
+  text-align: start;
+}
+
+.flower-route .actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.flower-route .btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  width: 150px;
+  padding: 8px 12px;
+  margin: 0 4px;
+  height: 40px;
+  border-radius: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.flower-route button.like {
+  background-color: var(--main);
+}
+
+.flower-route button.shop {
+  background-color: var(--dark);
+}
+
+@media (max-width: 760px) {
+  .flower-route .info {
+    padding: 0;
+  }
+  .flower-route img {
+    width: calc(
+      62.5vw - 325px
+    ); /* the linear function between (760, 150) and (680, 100) */
+  }
+}
+
+@media (max-width: 600px) {
+  .flower-route {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .flower-route img {
+    width: 60px;
+  }
+  .flower-route .actions {
+    flex-direction: column;
+  }
+  .flower-route .btn {
+    margin-top: 8px;
+  }
 }
